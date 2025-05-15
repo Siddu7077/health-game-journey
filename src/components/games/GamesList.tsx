@@ -1,8 +1,9 @@
+
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useGameTracker } from '@/contexts/GameTrackerContext';
 import { useToast } from '@/components/ui/sonner';
-import { Play, Award, Brain, Heart, Puzzle, Music, Gamepad, BookOpen, Activity, Dumbbell, Headphones, Basketball } from 'lucide-react';
+import { Play, Award, Brain, Heart, Puzzle, Music, Gamepad, BookOpen, Activity, Dumbbell, Headphones, Bell } from 'lucide-react';
 import MemoryGame from './MemoryGame';
 import BreathingExercise from './BreathingExercise';
 import ReactionGame from './ReactionGame';
@@ -92,7 +93,7 @@ const games = [
     id: 'balance',
     name: 'Balance Training',
     description: 'Exercises to improve your balance and stability',
-    icon: <Basketball className="h-8 w-8 text-health-primary" />,
+    icon: <Bell className="h-8 w-8 text-health-primary" />,
     component: ReactionGame, // Temporarily reuse existing component
     benefits: ['Prevents falls', 'Improves coordination', 'Strengthens core muscles']
   },
