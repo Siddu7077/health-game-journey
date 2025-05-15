@@ -5,6 +5,17 @@ import UserProfile from '@/components/auth/UserProfile';
 import { useGameTracker } from '@/contexts/GameTrackerContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
+interface GameStat {
+  totalSessions: number;
+  totalTime: number;
+  bestScore: number | null;
+  lastPlayed: number | null;
+}
+
+interface GameStats {
+  [gameId: string]: GameStat;
+}
+
 const ProfilePage = () => {
   const { user } = useAuth();
   const { sessions } = useGameTracker();
@@ -15,7 +26,7 @@ const ProfilePage = () => {
     return null;
   }
 
-  const gameStats = sessions.reduce((acc, session) => {
+  const gameStats: GameStats = sessions.reduce((acc, session) => {
     const gameId = session.gameId;
     
     if (!acc[gameId]) {
@@ -55,7 +66,7 @@ const ProfilePage = () => {
     }
     
     return acc;
-  }, {});
+  }, {} as GameStats);
 
   const gameNames = {
     memory: 'Memory Match',

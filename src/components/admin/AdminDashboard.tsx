@@ -1,10 +1,9 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/components/ui/sonner';
 import { BarChart, LineChart, PieChart } from '@/components/ui/chart';
-import { User, GameController, Calendar, MessageCircle } from 'lucide-react';
+import { User, Gamepad, Calendar, MessageCircle } from 'lucide-react';
 import { useAnalytics } from '@/contexts/AnalyticsContext';
 
 type TimeRange = '7d' | '30d' | '90d' | 'all';
@@ -101,7 +100,7 @@ const AdminDashboard = () => {
           title="Game Sessions"
           value="512"
           description="+8% from last month"
-          icon={<GameController className="h-5 w-5 text-health-primary" />}
+          icon={<Gamepad className="h-5 w-5 text-health-primary" />}
         />
         <StatCard
           title="Avg. Session Time"
