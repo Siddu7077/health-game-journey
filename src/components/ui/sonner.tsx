@@ -1,7 +1,7 @@
 
 "use client"
 
-import { Toaster as SonnerToaster } from "sonner"
+import { Toaster as SonnerToaster, toast as sonnerToast } from "sonner"
 
 const Toaster = ({
   ...props
@@ -23,8 +23,9 @@ const Toaster = ({
   )
 }
 
-export { Toaster, toast } from "sonner"
+// Re-export the toast function for use in the application
+export { Toaster, toast as toast } from "sonner"
 
 export const useToast = () => {
-  return { toast }
+  return { toast: sonnerToast }
 }
