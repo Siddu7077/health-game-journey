@@ -7,6 +7,12 @@ import { Play, Award, Brain, Heart, Puzzle, Music, Gamepad, BookOpen, Activity, 
 import MemoryGame from './MemoryGame';
 import BreathingExercise from './BreathingExercise';
 import ReactionGame from './ReactionGame';
+import WordScrambleGame from './WordScrambleGame';
+import ColorRelaxationGame from './ColorRelaxationGame';
+import PatternMatchGame from './PatternMatchGame';
+import FocusCounterGame from './FocusCounterGame';
+import MathChallengeGame from './MathChallengeGame';
+import MusicTherapyGame from './MusicTherapyGame';
 
 const games = [
   {
@@ -26,76 +32,68 @@ const games = [
     benefits: ['Improves cognitive processing speed', 'Enhances hand-eye coordination', 'Fun way to stay mentally sharp']
   },
   {
-    id: 'puzzle',
-    name: 'Brain Puzzles',
-    description: 'Challenging puzzles that stimulate different areas of your brain',
-    icon: <Puzzle className="h-8 w-8 text-health-primary" />,
-    component: MemoryGame, // Temporarily reuse existing component
-    benefits: ['Enhances problem-solving skills', 'Improves logical thinking', 'Maintains cognitive health']
+    id: 'word-scramble',
+    name: 'Word Scramble',
+    description: 'Unscramble words to boost vocabulary and cognitive skills',
+    icon: <BookOpen className="h-8 w-8 text-health-primary" />,
+    component: WordScrambleGame,
+    benefits: ['Expands vocabulary', 'Improves cognitive flexibility', 'Enhances problem-solving skills']
   },
   {
-    id: 'music',
-    name: 'Music Therapy',
-    description: 'Use the healing power of music to reduce anxiety and improve mood',
+    id: 'color-relaxation',
+    name: 'Color Therapy',
+    description: 'Interactive color-based relaxation exercise',
+    icon: <Heart className="h-8 w-8 text-health-primary" />,
+    component: ColorRelaxationGame,
+    benefits: ['Reduces stress and anxiety', 'Improves mood', 'Enhances focus and mindfulness']
+  },
+  {
+    id: 'pattern-match',
+    name: 'Pattern Matching',
+    description: 'Find and match visual patterns quickly',
+    icon: <Puzzle className="h-8 w-8 text-health-primary" />,
+    component: PatternMatchGame,
+    benefits: ['Improves visual processing', 'Enhances pattern recognition', 'Boosts cognitive speed']
+  },
+  {
+    id: 'focus-counter',
+    name: 'Focus Counter',
+    description: 'Count specific objects while ignoring distractions',
+    icon: <Brain className="h-8 w-8 text-health-primary" />,
+    component: FocusCounterGame,
+    benefits: ['Improves selective attention', 'Enhances concentration', 'Trains visual discrimination']
+  },
+  {
+    id: 'math-challenge',
+    name: 'Mental Math',
+    description: 'Quick arithmetic challenges to boost brain power',
+    icon: <Dumbbell className="h-8 w-8 text-health-primary" />,
+    component: MathChallengeGame,
+    benefits: ['Enhances numerical reasoning', 'Improves mental calculation speed', 'Keeps the brain active']
+  },
+  {
+    id: 'music-therapy',
+    name: 'Musical Memory',
+    description: 'Remember and replay musical patterns',
     icon: <Music className="h-8 w-8 text-health-primary" />,
-    component: MemoryGame, // Temporarily reuse existing component
-    benefits: ['Reduces stress and anxiety', 'Improves mood', 'Helps with emotional expression']
+    component: MusicTherapyGame,
+    benefits: ['Improves auditory memory', 'Enhances concentration', 'Provides stress relief through music']
   },
   {
     id: 'coordination',
     name: 'Coordination Challenge',
     description: 'Games that improve your hand-eye coordination and reflexes',
     icon: <Gamepad className="h-8 w-8 text-health-primary" />,
-    component: ReactionGame, // Temporarily reuse existing component
+    component: ReactionGame,
     benefits: ['Enhances motor skills', 'Improves coordination', 'Helps with daily activities']
   },
   {
     id: 'mindfulness',
     name: 'Mindfulness Moments',
     description: 'Short mindfulness exercises for mental clarity and focus',
-    icon: <Brain className="h-8 w-8 text-health-primary" />,
-    component: BreathingExercise, // Using breathing component but for mindfulness
-    benefits: ['Reduces stress', 'Improves attention', 'Promotes emotional well-being']
-  },
-  {
-    id: 'storytelling',
-    name: 'Therapeutic Storytelling',
-    description: 'Interactive stories that promote emotional healing',
-    icon: <BookOpen className="h-8 w-8 text-health-primary" />,
-    component: MemoryGame, // Temporarily reuse existing component
-    benefits: ['Encourages emotional processing', 'Builds narrative skills', 'Provides perspective']
-  },
-  {
-    id: 'cardio',
-    name: 'Cardio Workout',
-    description: 'Guided cardio exercises you can do from home',
-    icon: <Heart className="h-8 w-8 text-health-primary" />,
-    component: BreathingExercise, // Temporarily reuse existing component
-    benefits: ['Improves cardiovascular health', 'Increases endurance', 'Boosts energy levels']
-  },
-  {
-    id: 'strength',
-    name: 'Strength Builder',
-    description: 'Progressive strength exercises for different fitness levels',
-    icon: <Dumbbell className="h-8 w-8 text-health-primary" />,
-    component: BreathingExercise, // Temporarily reuse existing component
-    benefits: ['Builds muscle tone', 'Increases strength', 'Improves posture']
-  },
-  {
-    id: 'sound',
-    name: 'Sound Therapy',
-    description: 'Healing sounds and frequencies for relaxation and wellness',
-    icon: <Headphones className="h-8 w-8 text-health-primary" />,
-    component: BreathingExercise, // Temporarily reuse existing component
-    benefits: ['Promotes deep relaxation', 'Reduces anxiety', 'Improves sleep quality']
-  },
-  {
-    id: 'balance',
-    name: 'Balance Training',
-    description: 'Exercises to improve your balance and stability',
     icon: <Bell className="h-8 w-8 text-health-primary" />,
-    component: ReactionGame, // Temporarily reuse existing component
-    benefits: ['Prevents falls', 'Improves coordination', 'Strengthens core muscles']
+    component: BreathingExercise,
+    benefits: ['Reduces stress', 'Improves attention', 'Promotes emotional well-being']
   },
   {
     id: 'breathing',
@@ -104,6 +102,14 @@ const games = [
     icon: <Activity className="h-8 w-8 text-health-primary" />,
     component: BreathingExercise,
     benefits: ['Reduces stress and anxiety', 'Improves lung function', 'Helps with mindfulness']
+  },
+  {
+    id: 'body-scan',
+    name: 'Body Scan Meditation',
+    description: 'Progressive relaxation technique for whole-body awareness',
+    icon: <Headphones className="h-8 w-8 text-health-primary" />,
+    component: BreathingExercise, // Reusing component but for body scan meditation
+    benefits: ['Relieves physical tension', 'Improves body awareness', 'Promotes deep relaxation']
   }
 ];
 
