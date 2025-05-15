@@ -1,9 +1,8 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useGameTracker } from '@/contexts/GameTrackerContext';
 import { useToast } from '@/components/ui/sonner';
-import { Play, Timer, Award, Brain, Heart, Zap, Activity, Smile, Target, Dumbbell, Shield, BookOpen } from 'lucide-react';
+import { Play, Award, Brain, Heart, Puzzle, Music, Gamepad, BookOpen, Activity, Dumbbell, Headphones, Basketball } from 'lucide-react';
 import MemoryGame from './MemoryGame';
 import BreathingExercise from './BreathingExercise';
 import ReactionGame from './ReactionGame';
@@ -18,93 +17,92 @@ const games = [
     benefits: ['Improves cognitive function', 'Enhances memory', 'Helps with focus and concentration']
   },
   {
-    id: 'breathing',
-    name: 'Breathing Exercise',
-    description: 'Guided breathing exercise for stress and anxiety relief',
-    icon: <Timer className="h-8 w-8 text-health-primary" />,
-    component: BreathingExercise,
-    benefits: ['Reduces stress and anxiety', 'Improves lung function', 'Helps with mindfulness']
-  },
-  {
     id: 'reaction',
     name: 'Reaction Time',
     description: 'Test and improve your reaction time',
-    icon: <Play className="h-8 w-8 text-health-primary" />,
+    icon: <Activity className="h-8 w-8 text-health-primary" />,
     component: ReactionGame,
     benefits: ['Improves cognitive processing speed', 'Enhances hand-eye coordination', 'Fun way to stay mentally sharp']
   },
-  // Additional games
   {
-    id: 'meditation',
-    name: 'Guided Meditation',
-    description: 'Follow guided meditation sessions for mental clarity',
-    icon: <Brain className="h-8 w-8 text-health-primary" />,
-    component: BreathingExercise, // Temporarily reuse existing component
-    benefits: ['Reduces anxiety and stress', 'Improves focus', 'Promotes emotional well-being']
+    id: 'puzzle',
+    name: 'Brain Puzzles',
+    description: 'Challenging puzzles that stimulate different areas of your brain',
+    icon: <Puzzle className="h-8 w-8 text-health-primary" />,
+    component: MemoryGame, // Temporarily reuse existing component
+    benefits: ['Enhances problem-solving skills', 'Improves logical thinking', 'Maintains cognitive health']
   },
   {
-    id: 'heartrate',
-    name: 'Heart Rate Trainer',
-    description: 'Learn to control your heart rate through guided exercises',
+    id: 'music',
+    name: 'Music Therapy',
+    description: 'Use the healing power of music to reduce anxiety and improve mood',
+    icon: <Music className="h-8 w-8 text-health-primary" />,
+    component: MemoryGame, // Temporarily reuse existing component
+    benefits: ['Reduces stress and anxiety', 'Improves mood', 'Helps with emotional expression']
+  },
+  {
+    id: 'coordination',
+    name: 'Coordination Challenge',
+    description: 'Games that improve your hand-eye coordination and reflexes',
+    icon: <Gamepad className="h-8 w-8 text-health-primary" />,
+    component: ReactionGame, // Temporarily reuse existing component
+    benefits: ['Enhances motor skills', 'Improves coordination', 'Helps with daily activities']
+  },
+  {
+    id: 'mindfulness',
+    name: 'Mindfulness Moments',
+    description: 'Short mindfulness exercises for mental clarity and focus',
+    icon: <Brain className="h-8 w-8 text-health-primary" />,
+    component: BreathingExercise, // Using breathing component but for mindfulness
+    benefits: ['Reduces stress', 'Improves attention', 'Promotes emotional well-being']
+  },
+  {
+    id: 'storytelling',
+    name: 'Therapeutic Storytelling',
+    description: 'Interactive stories that promote emotional healing',
+    icon: <BookOpen className="h-8 w-8 text-health-primary" />,
+    component: MemoryGame, // Temporarily reuse existing component
+    benefits: ['Encourages emotional processing', 'Builds narrative skills', 'Provides perspective']
+  },
+  {
+    id: 'cardio',
+    name: 'Cardio Workout',
+    description: 'Guided cardio exercises you can do from home',
     icon: <Heart className="h-8 w-8 text-health-primary" />,
     component: BreathingExercise, // Temporarily reuse existing component
-    benefits: ['Improves cardiovascular health', 'Reduces stress response', 'Better emotional regulation']
+    benefits: ['Improves cardiovascular health', 'Increases endurance', 'Boosts energy levels']
   },
   {
-    id: 'braingames',
-    name: 'Brain Teasers',
-    description: 'Solve puzzles that challenge different cognitive abilities',
-    icon: <Zap className="h-8 w-8 text-health-primary" />,
-    component: MemoryGame, // Temporarily reuse existing component
-    benefits: ['Enhances problem-solving skills', 'Improves logical thinking', 'Keeps mind active and engaged']
-  },
-  {
-    id: 'bodyscan',
-    name: 'Body Scan Relaxation',
-    description: 'Progressive relaxation technique for physical tension',
-    icon: <Activity className="h-8 w-8 text-health-primary" />,
-    component: BreathingExercise, // Temporarily reuse existing component
-    benefits: ['Reduces physical tension', 'Improves body awareness', 'Helps with insomnia and stress']
-  },
-  {
-    id: 'positivethinking',
-    name: 'Positive Thinking',
-    description: 'Interactive exercises to promote positive thought patterns',
-    icon: <Smile className="h-8 w-8 text-health-primary" />,
-    component: MemoryGame, // Temporarily reuse existing component
-    benefits: ['Counters negative thoughts', 'Builds resilience', 'Improves overall mood']
-  },
-  {
-    id: 'focustrainer',
-    name: 'Focus Trainer',
-    description: 'Simple games designed to improve concentration',
-    icon: <Target className="h-8 w-8 text-health-primary" />,
-    component: ReactionGame, // Temporarily reuse existing component
-    benefits: ['Extends attention span', 'Reduces distractibility', 'Improves productivity']
-  },
-  {
-    id: 'stressrelief',
-    name: 'Stress Relief',
-    description: 'Quick exercises for immediate stress reduction',
+    id: 'strength',
+    name: 'Strength Builder',
+    description: 'Progressive strength exercises for different fitness levels',
     icon: <Dumbbell className="h-8 w-8 text-health-primary" />,
     component: BreathingExercise, // Temporarily reuse existing component
-    benefits: ['Immediate stress reduction', 'Teaches coping techniques', 'Can be done anywhere']
+    benefits: ['Builds muscle tone', 'Increases strength', 'Improves posture']
   },
   {
-    id: 'immunebooster',
-    name: 'Immune Booster',
-    description: 'Guided visualization to support immune system function',
-    icon: <Shield className="h-8 w-8 text-health-primary" />,
+    id: 'sound',
+    name: 'Sound Therapy',
+    description: 'Healing sounds and frequencies for relaxation and wellness',
+    icon: <Headphones className="h-8 w-8 text-health-primary" />,
     component: BreathingExercise, // Temporarily reuse existing component
-    benefits: ['Reduces stress hormones', 'Supports immune function', 'Promotes healing mindset']
+    benefits: ['Promotes deep relaxation', 'Reduces anxiety', 'Improves sleep quality']
   },
   {
-    id: 'sleepprep',
-    name: 'Sleep Preparation',
-    description: 'Calming activities to prepare for restful sleep',
-    icon: <BookOpen className="h-8 w-8 text-health-primary" />,
-    component: BreathingExercise, // Temporarily reuse existing component
-    benefits: ['Improves sleep quality', 'Reduces insomnia', 'Creates healthy bedtime routine']
+    id: 'balance',
+    name: 'Balance Training',
+    description: 'Exercises to improve your balance and stability',
+    icon: <Basketball className="h-8 w-8 text-health-primary" />,
+    component: ReactionGame, // Temporarily reuse existing component
+    benefits: ['Prevents falls', 'Improves coordination', 'Strengthens core muscles']
+  },
+  {
+    id: 'breathing',
+    name: 'Breathing Exercise',
+    description: 'Guided breathing exercise for stress and anxiety relief',
+    icon: <Activity className="h-8 w-8 text-health-primary" />,
+    component: BreathingExercise,
+    benefits: ['Reduces stress and anxiety', 'Improves lung function', 'Helps with mindfulness']
   }
 ];
 

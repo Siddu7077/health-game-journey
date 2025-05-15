@@ -19,16 +19,16 @@ const ChatPage = () => {
   }
 
   return (
-    <div>
-      <div className="mb-6 md:flex md:items-center md:justify-between">
-        <div>
+    <div className="container mx-auto px-4">
+      <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
+        <div className="mb-4 md:mb-0">
           <h1 className="text-2xl font-bold tracking-tight">Health Assistant</h1>
           <p className="text-muted-foreground">
             Chat about your health concerns and get personalized recommendations
           </p>
         </div>
         
-        <div className="mt-4 md:mt-0 flex items-center space-x-1 bg-muted rounded-lg p-1">
+        <div className="flex items-center space-x-1 bg-muted rounded-lg p-1 self-start md:self-auto">
           <button
             onClick={() => setActiveTab('chat')}
             className={`px-4 py-2 rounded-md text-sm font-medium ${
@@ -52,14 +52,16 @@ const ChatPage = () => {
         </div>
       </div>
 
-      {/* Fully responsive layout */}
+      {/* Responsive layout with better spacing */}
       {activeTab === 'chat' ? (
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-6 lg:gap-8 md:grid-cols-3">
           <div className="md:col-span-2">
             <ChatInterface />
           </div>
-          <div className="md:col-span-1 mt-8 md:mt-0">
-            <GamesList compact={true} />
+          <div className="md:col-span-1">
+            <div className="sticky top-4">
+              <GamesList compact={true} />
+            </div>
           </div>
         </div>
       ) : (
