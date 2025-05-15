@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/sonner';
@@ -69,11 +68,7 @@ const ReactionGame: React.FC<ReactionGameProps> = ({ onExit }) => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-      toast({
-        title: "Too early!",
-        description: "Wait for the green screen before clicking",
-        variant: "destructive"
-      });
+      toast("Too early! Wait for the green screen before clicking");
       startGame();
     } else if (gameState === GameState.READY) {
       // Valid click, calculate reaction time
@@ -120,10 +115,7 @@ const ReactionGame: React.FC<ReactionGameProps> = ({ onExit }) => {
   };
 
   const handleSubmitFeedback = () => {
-    toast({
-      title: "Thank You!",
-      description: "Your feedback helps us improve our games.",
-    });
+    toast("Thank You! Your feedback helps us improve our games.");
     onExit();
   };
 

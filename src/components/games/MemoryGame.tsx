@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/sonner';
@@ -91,9 +90,7 @@ const MemoryGame: React.FC<MemoryGameProps> = ({ onExit }) => {
           ));
           setFlippedCards([]);
           setMatchedPairs(matchedPairs + 1);
-          toast({
-            description: "Match found! Good job!",
-          });
+          toast("Match found! Good job!");
         }, 500);
       } else {
         // No match
@@ -112,10 +109,7 @@ const MemoryGame: React.FC<MemoryGameProps> = ({ onExit }) => {
   const handleGameOver = () => {
     setIsGameOver(true);
     endGameSession('memory', { moves });
-    toast({
-      title: "Congratulations!",
-      description: `You completed the game in ${moves} moves!`,
-    });
+    toast(`Congratulations! You completed the game in ${moves} moves!`);
   };
 
   const handleExitGame = () => {
@@ -126,10 +120,7 @@ const MemoryGame: React.FC<MemoryGameProps> = ({ onExit }) => {
   };
 
   const handleSubmitFeedback = () => {
-    toast({
-      title: "Thank You!",
-      description: "Your feedback helps us improve our games.",
-    });
+    toast("Thank You! Your feedback helps us improve our games.");
     onExit();
   };
 

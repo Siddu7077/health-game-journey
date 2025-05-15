@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useGameTracker } from '@/contexts/GameTrackerContext';
@@ -43,10 +42,7 @@ const GamesList = () => {
   const handleStartGame = (gameId: string) => {
     startGameSession(gameId);
     setActiveGame(gameId);
-    toast({
-      title: `Starting ${games.find(g => g.id === gameId)?.name}`,
-      description: "Your time will be tracked for research purposes.",
-    });
+    toast(`Starting ${games.find(g => g.id === gameId)?.name}. Your time will be tracked for research purposes.`);
   };
 
   const handleExitGame = () => {
