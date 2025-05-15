@@ -1,6 +1,5 @@
-
 import { useState, useRef, useEffect } from 'react';
-import { useToast } from '@/components/ui/sonner';
+import { toast } from '@/components/ui/sonner';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Send, Trash2, User } from 'lucide-react';
@@ -13,7 +12,6 @@ const ChatInterface = () => {
   const [message, setMessage] = useState('');
   const { messages, sendMessage, clearChat, isBotTyping } = useChat();
   const { suggestedGames } = useGameTracker();
-  const { toast } = useToast();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -30,18 +28,13 @@ const ChatInterface = () => {
       sendMessage(message);
       setMessage('');
     } else {
-      toast({
-        description: "Please type a message first",
-        variant: "destructive"
-      });
+      toast("Please type a message first");
     }
   };
 
   const handleClearChat = () => {
     clearChat();
-    toast({
-      description: "Chat cleared successfully",
-    });
+    toast("Chat cleared successfully");
   };
 
   return (
