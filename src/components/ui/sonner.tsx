@@ -23,9 +23,10 @@ const Toaster = ({
   )
 }
 
-// Re-export the toast function for use in the application
-export { Toaster, toast as toast } from "sonner"
+// Re-export the toast function from sonner
+export { Toaster, toast } from "sonner"
 
+// Export the useToast hook that returns the properly typed toast function
 export const useToast = () => {
   return { toast: sonnerToast }
 }

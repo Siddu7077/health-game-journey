@@ -118,9 +118,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setUser(null);
     localStorage.removeItem('healthgames_user');
     
-    toast({
-      description: "Logged out successfully",
-    });
+    toast("Logged out successfully");
     
     setIsLoading(false);
   };

@@ -83,7 +83,7 @@ const AdminDashboard = () => {
             <option value="all">All time</option>
           </select>
           
-          <Button onClick={() => toast({ description: "Report data exported successfully" })}>
+          <Button onClick={() => toast("Report data exported successfully")}>
             Export Data
           </Button>
         </div>

@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -35,23 +34,13 @@ const AuthForm = () => {
     try {
       if (isLogin) {
         await login(formData.email, formData.password);
-        toast({
-          title: "Logged in successfully",
-          description: "Welcome back!",
-        });
+        toast("Logged in successfully. Welcome back!");
       } else {
         await signup(formData);
-        toast({
-          title: "Account created successfully",
-          description: "Welcome to Health Games!",
-        });
+        toast("Account created successfully. Welcome to Health Games!");
       }
     } catch (error) {
-      toast({
-        title: "Authentication Error",
-        description: isLogin ? "Invalid credentials. Please try again." : "Failed to create account.",
-        variant: "destructive"
-      });
+      toast(isLogin ? "Invalid credentials. Please try again." : "Failed to create account.");
     }
     
     setLoading(false);

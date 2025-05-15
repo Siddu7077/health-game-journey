@@ -15,10 +15,7 @@ const AppLayout = () => {
   useEffect(() => {
     if (location.pathname === '/' && !sessionStorage.getItem('welcomed')) {
       setTimeout(() => {
-        toast({
-          title: "Welcome to HealthGames",
-          description: "Chat with our AI assistant about your health concerns and discover therapeutic games.",
-        });
+        toast("Welcome to HealthGames - Chat with our AI assistant about your health concerns and discover therapeutic games.");
         sessionStorage.setItem('welcomed', 'true');
       }, 1000);
     }

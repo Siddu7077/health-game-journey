@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/sonner';
@@ -72,9 +71,7 @@ const BreathingExercise: React.FC<BreathingExerciseProps> = ({ onExit }) => {
 
   const startExercise = () => {
     setIsActive(true);
-    toast({
-      description: "Exercise started. Follow the breathing instructions.",
-    });
+    toast("Exercise started. Follow the breathing instructions.");
   };
 
   const pauseExercise = () => {
@@ -93,10 +90,7 @@ const BreathingExercise: React.FC<BreathingExerciseProps> = ({ onExit }) => {
     setIsActive(false);
     endGameSession('breathing', { cyclesCompleted, totalTimeSpent });
     setShowFeedback(true);
-    toast({
-      title: "Exercise Completed",
-      description: `You completed ${cyclesCompleted} breathing cycles!`,
-    });
+    toast(`Exercise Completed! You completed ${cyclesCompleted} breathing cycles!`);
   };
 
   const handleExitGame = () => {
@@ -107,10 +101,7 @@ const BreathingExercise: React.FC<BreathingExerciseProps> = ({ onExit }) => {
   };
 
   const handleSubmitFeedback = () => {
-    toast({
-      title: "Thank You!",
-      description: "Your feedback helps us improve our exercises.",
-    });
+    toast("Thank You! Your feedback helps us improve our exercises.");
     onExit();
   };
 
