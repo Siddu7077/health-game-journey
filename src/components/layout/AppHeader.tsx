@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/sonner';
 import { useAuth } from '@/contexts/AuthContext';
-import { User, LogIn, Menu, X, Settings } from 'lucide-react';
+import { User, LogIn, Menu, X, Settings, BarChart2 } from 'lucide-react';
 
 const AppHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,6 +33,9 @@ const AppHeader = () => {
             </Link>
             <Link to="/chat" className="text-gray-600 hover:text-health-primary px-3 py-2 rounded-md">
               Chat Assistant
+            </Link>
+            <Link to="/stats" className="text-gray-600 hover:text-health-primary px-3 py-2 rounded-md">
+              My Stats
             </Link>
             {isAdmin && (
               <Link to="/admin" className="text-gray-600 hover:text-health-primary px-3 py-2 rounded-md">
@@ -93,6 +96,15 @@ const AppHeader = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               Chat Assistant
+            </Link>
+            <Link to="/stats" 
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <div className="flex items-center justify-between">
+                <span>My Statistics</span>
+                <BarChart2 size={18} />
+              </div>
             </Link>
             {isAdmin && (
               <Link to="/admin" 

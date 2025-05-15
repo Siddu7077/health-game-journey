@@ -1,8 +1,9 @@
+
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useGameTracker } from '@/contexts/GameTrackerContext';
 import { useToast } from '@/components/ui/sonner';
-import { Play, Timer, Award } from 'lucide-react';
+import { Play, Timer, Award, Brain, Heart, Zap, Activity, Smile, Target, Dumbbell, Shield, BookOpen } from 'lucide-react';
 import MemoryGame from './MemoryGame';
 import BreathingExercise from './BreathingExercise';
 import ReactionGame from './ReactionGame';
@@ -31,10 +32,87 @@ const games = [
     icon: <Play className="h-8 w-8 text-health-primary" />,
     component: ReactionGame,
     benefits: ['Improves cognitive processing speed', 'Enhances hand-eye coordination', 'Fun way to stay mentally sharp']
+  },
+  // Additional games
+  {
+    id: 'meditation',
+    name: 'Guided Meditation',
+    description: 'Follow guided meditation sessions for mental clarity',
+    icon: <Brain className="h-8 w-8 text-health-primary" />,
+    component: BreathingExercise, // Temporarily reuse existing component
+    benefits: ['Reduces anxiety and stress', 'Improves focus', 'Promotes emotional well-being']
+  },
+  {
+    id: 'heartrate',
+    name: 'Heart Rate Trainer',
+    description: 'Learn to control your heart rate through guided exercises',
+    icon: <Heart className="h-8 w-8 text-health-primary" />,
+    component: BreathingExercise, // Temporarily reuse existing component
+    benefits: ['Improves cardiovascular health', 'Reduces stress response', 'Better emotional regulation']
+  },
+  {
+    id: 'braingames',
+    name: 'Brain Teasers',
+    description: 'Solve puzzles that challenge different cognitive abilities',
+    icon: <Zap className="h-8 w-8 text-health-primary" />,
+    component: MemoryGame, // Temporarily reuse existing component
+    benefits: ['Enhances problem-solving skills', 'Improves logical thinking', 'Keeps mind active and engaged']
+  },
+  {
+    id: 'bodyscan',
+    name: 'Body Scan Relaxation',
+    description: 'Progressive relaxation technique for physical tension',
+    icon: <Activity className="h-8 w-8 text-health-primary" />,
+    component: BreathingExercise, // Temporarily reuse existing component
+    benefits: ['Reduces physical tension', 'Improves body awareness', 'Helps with insomnia and stress']
+  },
+  {
+    id: 'positivethinking',
+    name: 'Positive Thinking',
+    description: 'Interactive exercises to promote positive thought patterns',
+    icon: <Smile className="h-8 w-8 text-health-primary" />,
+    component: MemoryGame, // Temporarily reuse existing component
+    benefits: ['Counters negative thoughts', 'Builds resilience', 'Improves overall mood']
+  },
+  {
+    id: 'focustrainer',
+    name: 'Focus Trainer',
+    description: 'Simple games designed to improve concentration',
+    icon: <Target className="h-8 w-8 text-health-primary" />,
+    component: ReactionGame, // Temporarily reuse existing component
+    benefits: ['Extends attention span', 'Reduces distractibility', 'Improves productivity']
+  },
+  {
+    id: 'stressrelief',
+    name: 'Stress Relief',
+    description: 'Quick exercises for immediate stress reduction',
+    icon: <Dumbbell className="h-8 w-8 text-health-primary" />,
+    component: BreathingExercise, // Temporarily reuse existing component
+    benefits: ['Immediate stress reduction', 'Teaches coping techniques', 'Can be done anywhere']
+  },
+  {
+    id: 'immunebooster',
+    name: 'Immune Booster',
+    description: 'Guided visualization to support immune system function',
+    icon: <Shield className="h-8 w-8 text-health-primary" />,
+    component: BreathingExercise, // Temporarily reuse existing component
+    benefits: ['Reduces stress hormones', 'Supports immune function', 'Promotes healing mindset']
+  },
+  {
+    id: 'sleepprep',
+    name: 'Sleep Preparation',
+    description: 'Calming activities to prepare for restful sleep',
+    icon: <BookOpen className="h-8 w-8 text-health-primary" />,
+    component: BreathingExercise, // Temporarily reuse existing component
+    benefits: ['Improves sleep quality', 'Reduces insomnia', 'Creates healthy bedtime routine']
   }
 ];
 
-const GamesList = () => {
+interface GamesListProps {
+  compact?: boolean;
+}
+
+const GamesList = ({ compact = false }: GamesListProps) => {
   const [activeGame, setActiveGame] = useState<string | null>(null);
   const { startGameSession, suggestedGames } = useGameTracker();
   const { toast } = useToast();
@@ -98,37 +176,59 @@ const GamesList = () => {
         </Card>
       )}
       
-      <div className="grid md:grid-cols-3 gap-4">
-        {games.map((game) => (
-          <Card key={game.id} className="game-card hover:border-health-primary animate-fade-in">
-            <CardHeader className="pb-2">
-              <div className="mb-2">{game.icon}</div>
-              <CardTitle>{game.name}</CardTitle>
-              <CardDescription>{game.description}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-2">
-                <p className="text-sm font-medium">Benefits:</p>
-                <ul className="text-sm text-muted-foreground space-y-1">
-                  {game.benefits.map((benefit, i) => (
-                    <li key={i} className="flex items-start">
-                      <span className="mr-2 mt-1">•</span>
-                      <span>{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
+      {compact ? (
+        // Compact view for sidebar
+        <div className="space-y-2">
+          {games.map((game) => (
+            <button
+              key={game.id}
+              onClick={() => handleStartGame(game.id)}
+              className="w-full text-left p-2 rounded-md hover:bg-muted flex items-center gap-2 transition-colors"
+            >
+              <div className="p-1 bg-health-primary/10 rounded-md">
+                {game.icon}
               </div>
-              <button
-                onClick={() => handleStartGame(game.id)}
-                className="mt-4 w-full py-2 bg-health-primary text-white rounded-md hover:bg-health-secondary transition-colors flex items-center justify-center gap-2"
-              >
-                <Play size={18} />
-                Play Now
-              </button>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+              <div>
+                <div className="font-medium">{game.name}</div>
+                <div className="text-sm text-muted-foreground truncate">{game.description}</div>
+              </div>
+            </button>
+          ))}
+        </div>
+      ) : (
+        // Full card view for games page
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {games.map((game) => (
+            <Card key={game.id} className="game-card hover:border-health-primary animate-fade-in flex flex-col">
+              <CardHeader className="pb-2">
+                <div className="mb-2">{game.icon}</div>
+                <CardTitle>{game.name}</CardTitle>
+                <CardDescription>{game.description}</CardDescription>
+              </CardHeader>
+              <CardContent className="flex flex-col flex-grow">
+                <div className="space-y-2 flex-grow">
+                  <p className="text-sm font-medium">Benefits:</p>
+                  <ul className="text-sm text-muted-foreground space-y-1">
+                    {game.benefits.map((benefit, i) => (
+                      <li key={i} className="flex items-start">
+                        <span className="mr-2 mt-1">•</span>
+                        <span>{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <button
+                  onClick={() => handleStartGame(game.id)}
+                  className="mt-4 w-full py-2 bg-health-primary text-white rounded-md hover:bg-health-secondary transition-colors flex items-center justify-center gap-2"
+                >
+                  <Play size={18} />
+                  Play Now
+                </button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -11,6 +11,7 @@ import GamesPage from "./pages/GamesPage";
 import ProfilePage from "./pages/ProfilePage";
 import AdminPage from "./pages/AdminPage";
 import AuthPage from "./pages/AuthPage";
+import StatsPage from "./pages/StatsPage";
 import NotFound from "./pages/NotFound";
 import AppLayout from "./components/layout/AppLayout";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -39,6 +40,7 @@ const App = () => (
                     <Route path="profile" element={<ProfilePage />} />
                     <Route path="admin" element={<AdminPage />} />
                     <Route path="auth" element={<AuthPage />} />
+                    <Route path="stats" element={<StatsPage />} />
                     <Route path="*" element={<NotFound />} />
                   </Route>
                 </Routes>

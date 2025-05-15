@@ -52,21 +52,19 @@ const ChatPage = () => {
         </div>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-3">
-        <div className={`${activeTab === 'chat' ? 'md:col-span-2' : 'md:col-span-3'}`}>
-          {activeTab === 'chat' ? (
+      {/* Fully responsive layout */}
+      {activeTab === 'chat' ? (
+        <div className="grid gap-8 md:grid-cols-3">
+          <div className="md:col-span-2">
             <ChatInterface />
-          ) : (
-            <GamesList />
-          )}
-        </div>
-        
-        {activeTab === 'chat' && (
-          <div className="md:col-span-1">
-            <GamesList />
           </div>
-        )}
-      </div>
+          <div className="md:col-span-1 mt-8 md:mt-0">
+            <GamesList compact={true} />
+          </div>
+        </div>
+      ) : (
+        <GamesList />
+      )}
     </div>
   );
 };
