@@ -20,7 +20,7 @@ const AppHeader = () => {
               <div className="bg-health-primary rounded-full w-8 h-8 flex items-center justify-center">
                 <span className="text-white font-bold text-lg">H</span>
               </div>
-              <span className="font-bold text-xl text-health-dark">HealthGames</span>
+              <span className="font-bold text-xl text-health-dark">HappiMate</span>
             </Link>
           </div>
           
